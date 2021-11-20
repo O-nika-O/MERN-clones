@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 //db connection url to mongo
-const db = 'mongodb+srv://admin:w8MtUZc65Cnv6gxe@cluster0.2dj6s.mongodb.net/tinderCloneDB?retryWrites=true&w=majority'
+const db = //
 
 const connectDB = async () => {
 
