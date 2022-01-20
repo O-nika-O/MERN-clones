@@ -1,0 +1,17 @@
+{
+  "name": "wasa-clone",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "nikagod",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.7",
+    "pusher": "^5.0.0"
+  }
+}

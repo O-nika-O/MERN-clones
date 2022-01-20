@@ -3,13 +3,28 @@ import { IconButton, Avatar } from '@mui/material';
 import { SearchOutlined, AttachFile, InsertEmoticon } from '@mui/icons-material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import MicIcon from '@mui/icons-material/Mic';
+import instance from './axios.js';
 import './chat.css';
 
 
-function Chat({input, sendMessage}) {
+function Chat({ messages }) {
 
 
-    const setInput = (e) => {
+    const [input, setInput] = React.useState('');
+
+    //async it is important to use await
+    const sendMessage = async (e) => {
+
+        e.preventDefault();
+
+        await instance.post('/messages/new', {
+           message: input,
+           name: 'nerd',
+           timestamp: 'now',
+           received: true
+        })
+
+        setInput('');
 
     }
 
@@ -37,49 +52,24 @@ function Chat({input, sendMessage}) {
             </div>
 
             <div className='chat-body'>
-
-                <p className='chat-message'>
-
+                {messages.map((message) => (
+                    
+                    <p className={`chat-message ${message.received && "chat-reciever"}`}>
+                
                     <span className="chat-name">
-                        Arcane Master
+                        {message.name}
                     </span>
 
-                    iam a amfo messange
+                    {message.message}
 
                     <span className="chat-timestamp">
-                        {new Date().toUTCString()}  
+                        {message.timestamp}
                     </span>
                 
                 </p>
-
-                <p className='chat-message chat-reciever'>
+                    
+                ))}
                 
-                    <span className="chat-name">
-                        Arcane Master
-                    </span>
-
-                    iam a amfo messange
-
-                    <span className="chat-timestamp">
-                        {new Date().toUTCString()}  
-                    </span>
-                
-                </p>
-
-                <p className='chat-message'>
-                
-                    <span className="chat-name">
-                        Arcane Master
-                    </span>
-
-                    iam a amfo messange
-
-                    <span className="chat-timestamp">
-                        {new Date().toUTCString()}  
-                    </span>
-                
-                </p>
-
             </div>
 
             <div className='chat-footer'>
